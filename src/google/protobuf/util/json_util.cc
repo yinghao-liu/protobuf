@@ -43,7 +43,6 @@
 #include <google/protobuf/util/type_resolver.h>
 #include <google/protobuf/util/type_resolver_util.h>
 #include <google/protobuf/stubs/bytestream.h>
-
 #include <google/protobuf/stubs/strutil.h>
 #include <google/protobuf/stubs/status_macros.h>
 
@@ -115,7 +114,6 @@ util::Status BinaryToJsonString(TypeResolver* resolver,
                                   const std::string& binary_input,
                                   std::string* json_output,
                                   const JsonPrintOptions& options) {
-  json_output->clear();
   io::ArrayInputStream input_stream(binary_input.data(), binary_input.size());
   io::StringOutputStream output_stream(json_output);
   return BinaryToJsonStream(resolver, type_url, &input_stream, &output_stream,
@@ -210,7 +208,6 @@ util::Status JsonToBinaryString(TypeResolver* resolver,
                                   StringPiece json_input,
                                   std::string* binary_output,
                                   const JsonParseOptions& options) {
-  binary_output->clear();
   io::ArrayInputStream input_stream(json_input.data(), json_input.size());
   io::StringOutputStream output_stream(binary_output);
   return JsonToBinaryStream(resolver, type_url, &input_stream, &output_stream,
